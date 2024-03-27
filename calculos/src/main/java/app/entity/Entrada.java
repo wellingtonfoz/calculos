@@ -9,12 +9,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Entrada {
 
-	private List<Integer> numeros;
+	private long id;
 	
+	private List<Integer> lista;
 
 }
-

@@ -12,37 +12,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CalculoServiceTest {
-	
+public class CalculoServiceTest {
+
 	@Autowired
 	CalculoService calculoService;
 
 	@Test
-	@DisplayName("Testando soma")
-	void somarTest() {
-		
+	@DisplayName("TESTE UNITÁRIO DE SOMA DE 2 + 3")
+	void testarSoma() {
+
 		List<Integer> lista = new ArrayList<>();
-		lista.add(5);
+		lista.add(2);
 		lista.add(3);
-		lista.add(1);
-		
-		double soma = calculoService.somar(lista);
-		
-		assertEquals(9, soma);
+
+
+		int retorno = this.calculoService.somar(lista);
+
+		assertEquals(5, retorno);
+
 	}
+
+	@Test
+	@DisplayName("TESTE UNITÁRIO DE LANÇAMENTO DE EXCEÇÃO/ERRO")
+	void testarSoma2() {
+
+		List<Integer> lista = new ArrayList<>();
+		lista.add(null);
+		lista.add(4);
+
+		assertThrows(Exception.class, () -> {
+			int retorno = this.calculoService.somar(lista);
+		});
+
+
+	}
+
+	
 	
 	@Test
-	@DisplayName("Testando um erro")
-	void somarTest2() {
+	@DisplayName("TESTANDO MAIOR NÚMERO ENTRE 4,5,8,1")
+	void testarMaiorNumero() {
 		
 		List<Integer> lista = new ArrayList<>();
+		lista.add(4);
 		lista.add(5);
-		lista.add(3);
-		lista.add(null);
-			
-		assertThrows(Exception.class, () -> {
-			calculoService.somar(lista);
-		});
+		lista.add(8);
+		lista.add(1);
+		
+		int retorno = this.calculoService.buscarMaiorNumero(lista);
+		
+		assertEquals(8, retorno);
+		
 	}
+
+
 
 }
